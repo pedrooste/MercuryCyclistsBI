@@ -22,11 +22,16 @@ public class MercuryCyclistsApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Long productId = saleStreamGenerator.createTestProduct("Bike", 1000L, "Pushbike", 500L);
+		Long[] productIdArray = new Long[3];
+		productIdArray[0] = saleStreamGenerator.createTestProduct("Push Bike", 1000L, "Push Bike", 500L);
+		productIdArray[1] = saleStreamGenerator.createTestProduct("Mountain Bike", 1500L, "Mountain Bike", 750L);
+		productIdArray[2] = saleStreamGenerator.createTestProduct("Normal Bike", 800L, "Normal Bike", 600L);
 
 		while(true){
-			Thread.sleep(1000);
-			saleStreamGenerator.createTestBackorder("Caitlyn", "Wollongong", productId, 1L);
+			Thread.sleep(2000);
+			int productIdArrayIndex = 0 + (int)(Math.random() * ((2 - 0) + 1)); // Random int [0, 2]
+			Long ranQuantity = Math.round((double)(1 + (int)(Math.random() * ((3 - 1) + 1)))); // Random Long [1, 3]
+			saleStreamGenerator.createTestBackorder("Caitlyn", "Wollongong", productIdArray[productIdArrayIndex], ranQuantity);
 		}
 	}
 
