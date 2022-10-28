@@ -22,9 +22,31 @@ public class SaleInteractiveQuery {
     }
 
     /**
-     * Iterates through all sale events, calculating the total price of all units sold
+     * Returns a summary for all products
+     * @return
      */
     public Collection<SaleSummary> getSaleSummary() {
+        return calculateSummary().values();
+    }
+
+
+    /**
+     * Returns the summary for the product name entered
+     */
+    public SaleSummary getProductSaleSummary(String productName) {
+        Map<String, SaleSummary> sales = calculateSummary();
+        if (sales.containsKey(productName)){
+            return sales.get(productName);
+        }
+        else{
+            throw new IllegalArgumentException(String.format("Product with name: %s could not be found", productName));
+        }
+    }
+
+    /**
+     * Iterates through all sale events, calculating the total price of all units sold
+     */
+    public Map<String, SaleSummary> calculateSummary() {
         Map<String, SaleSummary> saleList = new HashMap<>();
         KeyValueIterator<String, SaleEvent> sales = getSales().all();
 
@@ -45,7 +67,7 @@ public class SaleInteractiveQuery {
 
         }
 
-        return saleList.values();
+        return saleList;
     }
 
     /**
