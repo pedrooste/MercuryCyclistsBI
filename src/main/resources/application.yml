@@ -14,8 +14,3 @@ spring.cloud.stream.kafka.streams.bindings:
         default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
         spring.json.trusted.packages: '*'
         spring.json.value.default.type: com.mercuryCyclists.businessIntelligence.entity.SaleEvent
-
-#spring.cloud.stream.kafka.streams.binder.stateStoreRetry.maxAttempts: 3
-
-
-

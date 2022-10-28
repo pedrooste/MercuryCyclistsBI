@@ -18,6 +18,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
+/*
+ * SaleStreamProcessing
+ *  Processes the consumption of streams from the bi-topic
+ */
 @Configuration
 public class SaleStreamProcessing {
 
@@ -39,6 +43,7 @@ public class SaleStreamProcessing {
                             .withValueSerde(saleEventSerde())
             );
 
+            // Remove this line when you're done debugging
             inputStream.print(Printed.toSysOut());
         };
     }
