@@ -1,0 +1,16 @@
+spring.cloud.stream.bindings:
+  process-in-0:
+        destination: bi-topic
+spring.cloud.stream.kafka.streams.binder:
+  brokers: localhost:9092
+  configuration:
+    commit.interval.ms: 1000
+  serdeError: logAndContinue
+spring.cloud.stream.kafka.streams.bindings:
+  process-in-0:
+    consumer:
+      configuration:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+        spring.json.trusted.packages: '*'
+        spring.json.value.default.type: com.mercuryCyclists.businessIntelligence.entity.SaleEvent
