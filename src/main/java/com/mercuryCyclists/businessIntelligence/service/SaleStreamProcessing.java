@@ -16,6 +16,7 @@ import org.springframework.kafka.support.serializer.JsonSerde;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 /*
@@ -35,7 +36,7 @@ public class SaleStreamProcessing {
                 String productName = v.getProductName();
                 String quantity = v.getQuantity().toString();
                 String price = v.getPrice().toString();
-                String newKey = productName + "_" + quantity + "_" + price;
+                String newKey = UUID.randomUUID().toString();
                 return KeyValue.pair(newKey, v);
             }).toTable(
                     Materialized.<String, SaleEvent, KeyValueStore<Bytes, byte[]>>as(SALE_STATE_STORE)
